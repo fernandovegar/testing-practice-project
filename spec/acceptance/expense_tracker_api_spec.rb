@@ -5,9 +5,11 @@ require_relative '../../app/api'
 module ExpenseTracker
 	RSpec.describe 'Expense Tracker API', :db  do
 		include Rack::Test::Methods
-			def app
-				ExpenseTracker::API.new
-			end
+
+		def app
+			ExpenseTracker::API.new
+		end
+		
 		def post_expense(expense)
 			post '/expenses', JSON.generate(expense)
 			expect(last_response.status).to eq(200)
